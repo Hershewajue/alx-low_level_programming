@@ -9,9 +9,11 @@
 int main(void)
 {
 char alp = 'a';
-while(alp <= 'z'){
-if (alp == 'e' || alp == 'q'){
-    alp++;
+while (alp <= 'z')
+{
+if (alp == 'e' || alp == 'q')
+{
+alp++;
 }
 putchar(alp);
 alp++;
