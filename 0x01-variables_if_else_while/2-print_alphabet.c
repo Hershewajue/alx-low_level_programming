@@ -12,8 +12,8 @@ char alp = 'a';
 while(alp <= 'z')
 {
 putchar(alp);
-putchar('\n');
 alp++;
 }
+putchar('\n');
 return 0;
 } 
