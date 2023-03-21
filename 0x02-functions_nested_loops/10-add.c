@@ -1,9 +1,12 @@
 #include "main.h"
 /**
-* print_alphabet - prints the lowercase alphabets
+* add - sums two integers and returns the result.
+* @a: The first integer to add.
+* @b: The second integer to add.
+*
+* Return: The sum of @a and @b.
 */
 int sum(int a, int b)
 {
-return a + b;
-_putchar('\n');
+return (a + b);
 }
