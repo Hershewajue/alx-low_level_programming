@@ -18,7 +18,7 @@ if (j > i)
 {
 putchar(i); /* print current number */
 putchar(j);
-if (i != 56 || j!= 57) /* check if last number */
+if (i != 56 || j != 57) /* check if last number */
 {
 putchar(','); /* print comma and space */
 putchar(' ');
