@@ -1,13 +1,18 @@
-#include <stdio.h>
-
+#include "main.h"
 /**
- * main - prints all possible combinations of two two-digit numbers
- * Return: Always 0 (Success)
- */
-
+* main - a program that prints _putchar
+* Return: Always (0)
+*/
 int main(void)
 {
-    printf("_putchar\n");
-	return (0);
-
+_putchar('_');
+_putchar('p');
+_putchar('u');
+_putchar('t');
+_putchar('c');
+_putchar('h');
+_putchar('a');
+_putchar('r');
+_putchar('\n');
+return (0);
 }
