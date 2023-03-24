@@ -1,10 +1,12 @@
 #include "main.h"
 /**
-*_isdigit - this function checks if the input is a digit
-*@c: an integer
-*Return: 1 if true and 0 if false
+* mul - function to mulitiply the given inputs.
+* @a: var name given to first input.
+* @b: var name given to second input.
+*
+* Return: @a * @b.
 */
-int mul(int a, int b);
+int mul(int a, int b)
 {
 return (a * b);
 }
