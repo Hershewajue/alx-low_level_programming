@@ -1,17 +1,17 @@
 #include "main.h"
 /**
-* print_line - function to print lines
+* print_line - printing line
 * @n: integer parameter
 */
 void print_line(int n)
 {
-int x;
+int i;
 if (n <= 0)
 {
 _putchar('\n');
 return;
 }
-for (x = 0; x < n; i++)
+for (i = 0; i < n; i++)
 {
 _putchar('_');
 }
