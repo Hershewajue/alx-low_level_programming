@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <main.h>
 
 #define PASSWORD_LENGTH 12
 
@@ -15,24 +16,21 @@ int main(void)
     char password[PASSWORD_LENGTH + 1];
     const char charset[] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
-    // Seed the random number generator with the current time
+    /* Seed the random number generator with the current time */
     srand(time(NULL));
 
-    // Generate a random character from the charset for each position in the password
+    /* Generate a random character from the charset for each position in the password */
     for (i = 0; i < PASSWORD_LENGTH; i++)
     {
         int index = rand() % sizeof(charset);
         password[i] = charset[index];
     }
 
-    // Terminate the password string
+    /* Terminate the password string */
     password[PASSWORD_LENGTH] = '\0';
 
-    // Print the generated password
+    /* Print the generated password */
     printf("%s\n", password);
-
-    // Output message
-    printf("Tada! Congrats\n");
 
     return (0);
 }
