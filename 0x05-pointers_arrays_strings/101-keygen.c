@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#include <main.h>
 
 #define PASSWORD_LENGTH 12
 
