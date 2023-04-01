@@ -1,6 +1,5 @@
 #include <stdio.h>
 /**
-
 * infinite_add - Adds two numbers stored as strings
 * @n1: The first number as a string
 * @n2: The second number as a string
