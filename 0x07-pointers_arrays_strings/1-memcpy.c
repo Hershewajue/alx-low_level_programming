@@ -1,4 +1,3 @@
-include "main.h"
 /**
  * _memcpy - copies a specified number of bytes from one memory location to another
  *
