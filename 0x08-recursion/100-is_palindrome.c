@@ -8,10 +8,8 @@
  */
 int _strlen_recursion(char *x)
 {
-if (x[0] != '\0')
-{
-return (1 + _strlen_recursion(x + 1));
-}
+	if (x[0] != '\0')
+		return (1 + _strlen_recursion(x + 1));
 	return (0);
 }
 
@@ -26,22 +24,15 @@ return (1 + _strlen_recursion(x + 1));
 
 int pal_checker(char *x, int i, int j)
 {
-if (x[i] == x[j])
-{
-if (i > j / 2)
-{
-return (1);
+	if (x[i] == x[j])
+		if (i > j / 2)
+			return (1);
+		else
+			return (pal_checker(x, i + 1, j - 1));
+	else
+		return (0);
 }
-else
-{
-return (pal_checker(x, i + 1, j - 1));
-}
-else
-{
-return (0);
-}
-}
-}
+
 /**
  * is_palindrome - the function check if x is palindrome
  * @x: base address for string.
@@ -50,5 +41,5 @@ return (0);
  */
 int is_palindrome(char *x)
 {
-return (pal_checker(x, 0, _strlen_recursion(x) - 1));
+	return (pal_checker(x, 0, _strlen_recursion(x) - 1));
 }
