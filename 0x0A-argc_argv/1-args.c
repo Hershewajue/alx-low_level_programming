@@ -1,5 +1,4 @@
 #include <stdio.h>
-
 /**
  * main - entry point of the program
  * @argc: the number of command line arguments
@@ -9,6 +8,7 @@
  */
 int main(int argc, char **argv)
 {
+(void)argv;
 /* Print the number of command line arguments (excluding the name of the program) */
 printf("%d\n", argc - 1);
 
