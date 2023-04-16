@@ -14,5 +14,5 @@ int main(int argc, char **argv)
 printf("%s\n", argv[0]);
 
 /* Return 0 to indicate success */
-return 0;
+return (0);
 }
