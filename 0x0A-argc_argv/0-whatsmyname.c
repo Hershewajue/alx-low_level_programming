@@ -7,12 +7,12 @@
  *
  * Return: 0 on success
  */
-int main(int argc, char *argv[])
+int main(int argc, char **argv)
 {
+(void)argc;
 /* Print the name of the program (first argument in argv) followed by a newline */
 printf("%s\n", argv[0]);
 
 /* Return 0 to indicate success */
 return 0;
 }
-
