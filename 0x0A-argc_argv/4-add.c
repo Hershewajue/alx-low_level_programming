@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <ctype.h>
 #include <stdlib.h>
 /**
 
@@ -10,33 +9,35 @@
  * followed by a new line and returns 1.
  * @param argc The number of arguments passed to the program
  * @param argv An array of strings containing the arguments
- * @return 0 on success, 1 on error
+ * Return 0 on success, 1 on error
  */
 
 int main(int argc, char **argv)
 {
-int sum = 0;
+int i, n, sum = 0;
+char *flag;
 
-if (argc == 1)
+if (argc < 2)
 {
 printf("0\n");
 return (0);
+
 }
 
-for (int i = 1; argv[i] != NULL; i++)
+for (i = 1; argv[i]; i++)
 {
-char *endptr;
-int value = strtol(argv[i], &endptr, 10);
-if (*endptr != '\0') {
+n = strtol(argv[i], &flag, 10);
+if (*flag)
+{
 printf("Error\n");
 return (1);
 }
 else
 {
-sum += value;
+sum += n;
 }
 }
-
 printf("%d\n", sum);
+
 return (0);
 }
