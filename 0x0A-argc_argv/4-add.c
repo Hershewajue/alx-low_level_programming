@@ -19,24 +19,22 @@ int sum = 0;
 
 if (argc == 1)
 {
-printf("%d\n", sum);
-return 0;
+printf("0\n");
+return (0);
 }
 
-for (int i = 1; i < argc; i++)
+for (int i = 1; argv[i] != NULL; i++)
 {
-char *arg = argv[i];
-int j = 0;
-while (arg[j])
-{
-if (!isdigit(arg[j]))
-{
+char *endptr;
+int value = strtol(argv[i], &endptr, 10);
+if (*endptr != '\0') {
 printf("Error\n");
-return 1;
+return (1);
 }
-j++;
+else
+{
+sum += value;
 }
-sum += atoi(arg);
 }
 
 printf("%d\n", sum);
