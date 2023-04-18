@@ -2,11 +2,12 @@
 #include <stdio.h>
 
 /**
- * print_dog - print dog
+ * print_dog - prints a struct dog
+ * @d: pointer to the struct dog
  *
- * @d: pointer to struct dog
- *
- * Return: nothing
+ * This function prints the information of a struct dog, including its name,
+ * age, and owner. If any element of the struct is NULL, it will print (nil)
+ * instead of the element.
  */
 
 void print_dog(struct dog *d)
