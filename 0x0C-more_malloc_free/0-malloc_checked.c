@@ -14,7 +14,6 @@ void *ptr = malloc(b);
 
 if (ptr == NULL)
 {
-fprintf(stderr, "Error: malloc failed with error code %d: %s\n", errno, strerror(errno));
 exit(98);
 }
 
