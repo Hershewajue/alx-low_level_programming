@@ -1,134 +1,100 @@
 #include "main.h"
-#include <stdlib.h>
+/*
+ * mul - a program that multiplies two positive numbers.
+ *
+ * Usage: mul num1 num2
+ *        num1 and num2 will be passed in base 10
+ *        Print the result, followed by a new line
+ *
+ * If the number of arguments is incorrect, print Error, followed by a new line,
+ * and exit with a status of 98
+ *
+ * num1 and num2 should only be composed of digits. If not, print Error, followed
+ * by a new line, and exit with a status of 98
+ *
+ * Return: 0 on success, 98 on failure
+ */
+
 #include <stdio.h>
+#include <stdlib.h>
 
 /**
- * _memset - fills memory with a constant byte
+ * is_digit - checks if a string is a digit
+ * @s: string to check
  *
- * @s: input pointer that represents memory block
- *     to fill
- * @b: characters to fill/set
- * @n: number of bytes to be filled
- *
- * Return: pointer to the filled memory area
+ * Return: 1 if @s is a digit, 0 otherwise
  */
-
-char *_memset(char *s, char b, unsigned int n)
+int is_digit(char *s)
 {
-	unsigned int i = 0;
-
-	while (i < n)
-	{
-		s[i] = b;
-		i++;
-	}
-	return (s);
+while (*s)
+{
+if (*s < '0' || *s > '9')
+return (0);
+s++;
+}
+return (1);
 }
 
 /**
- * _calloc - function that allocates memory
- *           for an array using memset
- *
- * @nmemb: size of array
- * @size: size of each element
- *
- * Return: pointer to new allocated memory
+ * print_error - prints error message and exits with status 98
  */
-
-void *_calloc(unsigned int nmemb, unsigned int size)
+void print_error(void)
 {
-	char *ptr;
-
-	if (nmemb == 0 || size == 0)
-		return (NULL);
-	ptr = malloc(nmemb * size);
-	if (ptr == NULL)
-		return (NULL);
-	_memset(ptr, 0, nmemb * size);
-
-	return (ptr);
+printf("Error\n");
+exit(98);
 }
 
-
 /**
- * multiply - initialize array with 0 byte
+ * main - entry point
+ * @argc: argument count
+ * @argv: argument vector
  *
- * @s1: string 1
- * @s2: string 2
- *
- * Return: nothing
+ * Return: 0 on success, 98 on failure
  */
-
-void multiply(char *s1, char *s2)
-{
-	int i, l1, l2, total_l, f_digit, s_digit, res = 0, tmp;
-	char *ptr;
-	void *temp;
-
-	l1 = _length(s1);
-	l2 = _length(s2);
-	tmp = l2;
-	total_l = l1 + l2;
-	ptr = _calloc(sizeof(int), total_l);
-
-	/* store our pointer address to free later */
-	temp = ptr;
-
-	for (l1--; l1 >= 0; l1--)
-	{
-		f_digit = s1[l1] - '0';
-		res = 0;
-		l2 = tmp;
-		for (l2--; l2 >= 0; l2--)
-		{
-			s_digit = s2[l2] - '0';
-			res += ptr[l2 + l1 + 1] + (f_digit * s_digit);
-			ptr[l1 + l2 + 1] = res % 10;
-			res /= 10;
-		}
-		if (res)
-			ptr[l1 + l2 + 1] = res % 10;
-	}
-
-	while (*ptr == 0)
-	{
-		ptr++;
-		total_l--;
-	}
-
-	for (i = 0; i < total_l; i++)
-		printf("%i", ptr[i]);
-	printf("\n");
-	free(temp);
-}
-
-
-/**
- * main - Entry point
- *
- * Description: a program that multiplies
- *            two positive numbers
- *
- * @argc: number of arguments
- * @argv: arguments array
- *
- * Return: 0 on success 98 on faliure
- */
-
 int main(int argc, char *argv[])
 {
-	char *n1 = argv[1];
-	char *n2 = argv[2];
+int len1 = 0, len2 = 0, i, j, carry = 0, digit;
+int *result;
 
-	if (argc != 3 || check_number(n1) || check_number(n2))
-		error_exit();
+if (argc != 3 || !is_digit(argv[1]) || !is_digit(argv[2]))
+print_error();
 
-	if (*n1 == '0' || *n2 == '0')
-	{
-		_putchar('0');
-		_putchar('\n');
-	}
-	else
-		multiply(n1, n2);
-	return (0);
+/* Get lengths of input numbers */
+while (argv[1][len1 + 1])
+len1++;
+while (argv[2][len2 + 1])
+len2++;
+
+/* Allocate memory for result array */
+result = malloc((len1 + len2) * sizeof(int));
+if (!result)
+return (1);
+
+/* Initialize result array to zero */
+for (i = 0; i < len1 + len2; i++)
+result[i] = 0;
+
+/* Multiply each digit of num1 with each digit of num2 */
+for (i = len1 - 1; i >= 0; i--)
+{
+carry = 0;
+for (j = len2 - 1; j >= 0; j--)
+{
+digit = (argv[1][i] - '0') * (argv[2][j] - '0') + carry;
+digit += result[i + j + 1];
+carry = digit / 10;
+result[i + j + 1] = digit % 10;
+}
+result[i + j + 1] += carry;
+}
+
+/* Print result */
+if (result[0] != 0)
+printf("%d", result[0]);
+for (i = 1; i < len1 + len2; i++)
+printf("%d", result[i]);
+printf("\n");
+
+free(result);
+return (0);
 }
