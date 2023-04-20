@@ -1,5 +1,5 @@
 #include "main.h"
-#include 
+#include <stdlib.h>
 /**
  * malloc_checked - allocates memory using malloc
  * @b: unsigned integer, number of bytes to allocate
@@ -14,8 +14,7 @@ void *ptr = malloc(b);
 
 if (ptr == NULL)
 {
-fprintf(stderr, "Error: malloc failed with error code %d: %s\n", 
-		errno, strerror(errno));
+fprintf(stderr, "Error: malloc failed with error code %d: %s\n", errno, strerror(errno));
 exit(98);
 }
 
