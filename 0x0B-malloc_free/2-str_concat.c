@@ -10,7 +10,7 @@
  */
 char *str_concat(char *s1, char *s2)
 {
-char *s3;
+char *result;
 unsigned int a = 0, b = 0, len1 = 0, len2 = 0;
 
 while (s1 && s1[len1])
