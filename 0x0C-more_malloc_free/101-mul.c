@@ -1,108 +1,134 @@
 #include "main.h"
-#include <stdio.h>
 #include <stdlib.h>
-#include <ctype.h>
+#include <stdio.h>
 
 /**
- * is_numeric - Check if a string is numeric.
- * @s: The string to check.
+ * _memset - fills memory with a constant byte
  *
- * Return: 1 if @s is numeric, 0 otherwise.
+ * @s: input pointer that represents memory block
+ *     to fill
+ * @b: characters to fill/set
+ * @n: number of bytes to be filled
+ *
+ * Return: pointer to the filled memory area
  */
-int is_numeric(const char *s)
-{
-if (*s == '-')
-s++;
 
-if (*s == '\0')
-return (0);
-
-while (*s != '\0')
+char *_memset(char *s, char b, unsigned int n)
 {
-if (!isdigit(*s))
-return (0);
-s++;
+unsigned int i = 0;
+
+while (i < n)
+{
+s[i] = b;
+i++;
 }
-
-return (1);
+return (s);
 }
 
 /**
- * multiply - Multiply two positive numbers represented as strings.
- * @num1: The first number.
- * @num2: The second number.
+ * _calloc - function that allocates memory
+ *           for an array using memset
  *
- * Return: The product of @num1 and @num2, as a string.
+ * @nmemb: size of array
+ * @size: size of each element
+ *
+ * Return: pointer to new allocated memory
  */
-char *multiply(const char *num1, const char *num2)
+
+void *_calloc(unsigned int nmemb, unsigned int size)
 {
-int len1, len2, len, i, j, k, carry, sum;
-char *result;
+char *ptr;
 
-len1 = strlen(num1);
-len2 = strlen(num2);
-len = len1 + len2;
-
-result = calloc(len + 1, sizeof(char));
-if (result == NULL)
+if (nmemb == 0 || size == 0)
 return (NULL);
+ptr = malloc(nmemb * size);
+if (ptr == NULL)
+return (NULL);
+_memset(ptr, 0, nmemb * size);
 
-for (i = len1 - 1; i >= 0; i--)
-{
-carry = 0;
-
-for (j = len2 - 1; j >= 0; j--)
-{
-k = i + j + 1;
-sum = (num1[i] - '0') * (num2[j] - '0') + carry + (result[k] - '0');
-result[k] = (sum % 10) + '0';
-carry = sum / 10;
+return (ptr);
 }
 
-result[i + j + 1] = carry + '0';
-}
-
-while (*result == '0' && *(result + 1) != '\0')
-result++;
-
-return (result);
-}
 
 /**
- * main - Entry point. Multiply two positive numbers.
- * @argc: The number of arguments.
- * @argv: An array of pointers to the arguments.
+ * multiply - initialize array with 0 byte
  *
- * Return: 0 on success, 98 on failure.
+ * @s1: string 1
+ * @s2: string 2
+ *
+ * Return: nothing
  */
-int main(int argc, char **argv)
-{
-char *num1, *num2, *result;
 
-if (argc != 3)
+void multiply(char *s1, char *s2)
 {
-printf("Error\n");
-return (98);
+int i, l1, l2, total_l, f_digit, s_digit, res = 0, tmp;
+char *ptr;
+void *temp;
+
+l1 = _length(s1);
+l2 = _length(s2);
+tmp = l2;
+total_l = l1 + l2;
+ptr = _calloc(sizeof(int), total_l);
+
+/* store our pointer address to free later */
+temp = ptr;
+
+for (l1--; l1 >= 0; l1--)
+{
+f_digit = s1[l1] - '0';
+res = 0;
+l2 = tmp;
+for (l2--; l2 >= 0; l2--)
+{
+s_digit = s2[l2] - '0';
+res += ptr[l2 + l1 + 1] + (f_digit * s_digit);
+ptr[l1 + l2 + 1] = res % 10;
+res /= 10;
+}
+if (res)
+ptr[l1 + l2 + 1] = res % 10;
 }
 
-if (!is_numeric(argv[1]) || !is_numeric(argv[2]))
+while (*ptr == 0)
 {
-printf("Error\n");
-return (98);
+ptr++;
+total_l--;
 }
 
-num1 = argv[1];
-num2 = argv[2];
-
-result = multiply(num1, num2);
-if (result == NULL)
-{
-printf("Error\n");
-return (98);
+for (i = 0; i < total_l; i++)
+printf("%i", ptr[i]);
+printf("\n");
+free(temp);
 }
 
-printf("%s\n", result);
-free(result);
 
+/**
+ * main - Entry point
+ *
+ * Description: a program that multiplies
+ *            two positive numbers
+ *
+ * @argc: number of arguments
+ * @argv: arguments array
+ *
+ * Return: 0 on success 98 on faliure
+ */
+
+int main(int argc, char *argv[])
+{
+char *n1 = argv[1];
+char *n2 = argv[2];
+
+if (argc != 3 || check_number(n1) || check_number(n2))
+error_exit();
+
+if (*n1 == '0' || *n2 == '0')
+{
+_putchar('0');
+_putchar('\n');
+}
+else
+multiply(n1, n2);
 return (0);
 }
