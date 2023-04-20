@@ -2,32 +2,31 @@
 #include <stdio.h>
 
 /**
- * print_numbers - a function that print numbers, followed by a new line.
+ * print_numbers - Prints a series of numbers, followed by a newline.
  *
- * @separator: pointer to constant separator
- * @n: start of input variables
+ * @separator: The separator to print between numbers.
+ *             If NULL, no separator is printed.
+ * @n: The number of integers to print.
+ * @...: The integers to print.
  *
- * Return: nothing
+ * Return: void
  */
-
 void print_numbers(const char *separator, const unsigned int n, ...)
 {
-	va_list ap;
-	unsigned int index;
+va_list args; /* declare a variable of type va_list, named args */
+unsigned int i; /* declare an unsigned int variable named i */
 
-	/* initialize the argument list from the start */
-	va_start(ap, n);
+va_start(args, n); /* initialize the va_list with va_start, using the last fixed parameter as a reference */
 
-	/* iterate through each argument*/
-	for (index = 0; index < n; index++)
-	{
-		/* print next argument */
-		printf("%d", va_arg(ap, int));
-		/* print separator only between arguments */
-		if (separator && index != n - 1)
-			printf("%s", separator);
-	}
-	/*clean up*/
-	va_end(ap);
-	printf("\n");
+for (i = 0; i < n; i++) { /* iterate through all the parameters passed to the function */
+printf("%d", va_arg(args, int)); /* print the current argument using va_arg to access the next variable argument */
+if (separator != NULL && i != n - 1)
+{ /* check if separator is not NULL and we are not on the last argument */
+printf("%s", separator); /* print the separator */
+}
+}
+
+va_end(args); /* clean up the va_list with va_end */
+
+printf("\n"); /* print a new line at the end */
 }
