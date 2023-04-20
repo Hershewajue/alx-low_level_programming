@@ -10,10 +10,8 @@
 int count_words(char *str)
 {
 int flag, count, words;
-
 flag = 0;
 words = 0;
-
 for (count = 0; str[count] != '\0'; count++)
 {
 if (str[count] == ' ')
@@ -24,10 +22,8 @@ flag = 1;
 words++;
 }
 }
-
 return (words);
 }
-
 /**
  * strtow - splits a string into words
  * @str: string to split
@@ -39,20 +35,16 @@ char **strtow(char *str)
 {
 char **words_matrix, *tmp_str;
 int i, index = 0, len = 0, num_words, count = 0, start_index, end_index;
-
 if (str == NULL || *str == '\0')
 return (NULL);
-
 while (*(str + len))
 len++;
 num_words = count_words(str);
 if (num_words == 0)
 return (NULL);
-
 words_matrix = (char **)malloc(sizeof(char *) * (num_words + 1));
 if (words_matrix == NULL)
 return (NULL);
-
 for (i = 0; i <= len; i++)
 {
 if (str[i] == ' ' || str[i] == '\0')
@@ -75,8 +67,6 @@ count = 0;
 else if (count++ == 0)
 start_index = i;
 }
-
 words_matrix[index] = NULL;
-
 return (words_matrix);
 }
