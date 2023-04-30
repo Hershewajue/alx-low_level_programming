@@ -21,10 +21,12 @@ return (NULL);
 /*connect the new_node to the head's initial node*/
 if (*head == NULL)
 new_node->next = NULL;
+
 else
 new_node->next = *head;
 
 new_node->n = n;
+
 /*start the list with a new node*/
 *head = new_node;
 
