@@ -1,8 +1,7 @@
 #include "lists.h"
 
 /**
- * add_nodeint_end - a function that adds a new node
- *            at the end of the node
+ * add_nodeint_end - a function that adds a new node at the end of the node
  *
  * @head: the pointer to the first node of the list
  * @n: the value to be added to the new node
@@ -32,6 +31,7 @@ while (temp->next != NULL)
 {
 /*while the condition is true, iterate through the loop*/
 temp = temp->next;	
+}
 }
 /*affix the fresh node to the list's end/
 temp->next = new_node;
