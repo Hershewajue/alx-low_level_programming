@@ -23,20 +23,15 @@ temp = *head;
 
 /*add the node, if the head is empty*/
 if (temp == NULL)
-{
 *head = new_node;
-}
+
 else
-{
 /*check if the node is not empty*/
 while (temp->next != NULL)
-{
 /*while the condition is true, iterate through the loop*/
 temp = temp->next;	
 /*affix the fresh node to the list's end/
 temp->next = new_node;
-}
-}
 }
 return (*head);
 }
