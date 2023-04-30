@@ -1,7 +1,7 @@
 #include "lists.h"
 
 /**
- * print_listint - a method that prints every item in a list
+ * print_listint - a function that prints all elements of a list
  *
  * @h: pointer to first node
  *
