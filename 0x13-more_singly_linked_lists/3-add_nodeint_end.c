@@ -32,10 +32,10 @@ while (temp->next != NULL)
 /*while the condition is true, iterate through the loop*/
 temp = temp->next;	
 }
-}
+
 /*affix the fresh node to the list's end/
 temp->next = new_node;
 }
-
+}
 return (*head);
 }
