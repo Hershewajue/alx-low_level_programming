@@ -29,5 +29,5 @@ node_counter++;
 /*displays the last node*/
 printf("%d\n", h->n);
 
-return (node_count);
+return (node_counter);
 }
